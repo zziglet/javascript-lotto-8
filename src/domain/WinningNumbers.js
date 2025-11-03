@@ -18,6 +18,12 @@ class WinningNumbers {
       throw new Error('[ERROR] 보너스 번호는 당첨 번호와 중복될 수 없습니다.');
     }
   }
+
+  match(lotto) {
+    const matchCount = lotto.countMatches(this.#winningNumbers.getNumbers());
+    const hasBonus = lotto.hasNumber(this.#bonusNumber);
+    return { matchCount, hasBonus };
+  }
 }
 
 export default WinningNumbers;
