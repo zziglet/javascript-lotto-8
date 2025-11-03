@@ -61,8 +61,8 @@
     | `hasNumber(number)` | 특정 번호 포함 여부 | 보너스 번호 확인용 |
 - **에러 메시지**
     - `[ERROR] 로또 번호는 6개여야 합니다.`
-    - `[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.`
-    - `[ERROR] 로또 번호에 중복된 숫자가 있습니다.`
+    - `[ERROR] 당첨 번호는 1부터 45 사이의 숫자여야 합니다.`
+    - `[ERROR] 당첨 번호에 중복된 숫자가 있습니다.`
 - **테스트 케이스**
     
     ```jsx
@@ -233,6 +233,7 @@
     - 1000원 단위인지 |
 - **에러 메시지**
     - `[ERROR] 구입 금액은 숫자여야 합니다.`
+    - `[ERROR] 구입 금액은 1,000원 이상의 양수여야 합니다.`
     - `[ERROR] 구입 금액은 1,000원 단위로 입력해야 합니다.`
 - **테스트 케이스**
     
@@ -320,7 +321,7 @@
     | --- | --- |
     | `async readPurchaseAmount()` | 구입 금액 입력 받기 |
     | `async readWinningNumbers()` | 당첨 번호 입력 받기 |
-    | `async readBonusNumber()` | 보너스 번호 입력 받기 |
+    | `async readBonusNumber(winningNumbers)` | 보너스 번호 입력 받기 |
 - **구현**
     - `Console.readLineAsync()` 사용
     - 각 메서드는 유효성 검증 후 파싱된 값 반환
@@ -365,8 +366,7 @@
     | 메서드 | 기능 |
     | --- | --- |
     | `async run()` | 게임 실행 (App.js에서 호출) |
-    | `async #inputPhase()` | 입력 단계 |
-    | `#issuePhase(amount)` | 발행 단계 |
+    | `async #inputAndIssuePhase()` | 입력 및 발행 단계 |
     | `#winningPhase(lottos, winningNumbers)` | 당첨 확인 단계 |
     | `#outputPhase(statistics, profitRate)` | 결과 출력 단계 |
 - **게임 흐름**
