@@ -15,4 +15,10 @@ describe("Rank 클래스 테스트", () => {
     expect(third.getPrize()).toBe(1_500_000);
     expect(third.getDescription()).toBe("5개 일치 (1,500,000원)");
   });
+
+  test("values 메서드는 NONE을 제외한 모든 등수 배열을 반환한다.", () => {
+    const values = Rank.values();
+    expect(values).toEqual([Rank.FIRST, Rank.SECOND, Rank.THIRD, Rank.FOURTH, Rank.FIFTH]);
+    expect(values).not.toContain(Rank.NONE);
+  });
 });
