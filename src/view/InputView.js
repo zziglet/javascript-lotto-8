@@ -26,6 +26,18 @@ const InputView = {
       }
     }
   },
+
+  async readBonusNumber(winningNumbers) {
+    while (true) {
+      try {
+        const input = await Console.readLineAsync("\n보너스 번호를 입력해 주세요.\n");
+        BonusNumberValidator.validate(input, winningNumbers);
+        return Number(input);
+      } catch (error) {
+        OutputView.printError(error.message);
+      }
+    }
+  },
 };
 
 export default InputView;
