@@ -44,6 +44,10 @@ const Rank = {
     if (matchCount === 3) return Rank.FIFTH;
     return Rank.NONE;
   },
+
+  values() {
+    return [Rank.FIRST, Rank.SECOND, Rank.THIRD, Rank.FOURTH, Rank.FIFTH];
+  },
 };
 
 export default Rank;
