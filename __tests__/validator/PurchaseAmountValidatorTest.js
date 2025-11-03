@@ -21,7 +21,7 @@ describe("PurchaseAmountValidator 테스트", () => {
     nonPositiveAmounts.forEach(amount => {
       expect(() => {
         PurchaseAmountValidator.validate(amount);
-      }).toThrow("[ERROR] 구입 금액은 1,000원 단위로 입력해야 합니다.");
+      }).toThrow("[ERROR] 구입 금액은 1,000원 이상의 양수여야 합니다.");
     });
   });
 
