@@ -24,4 +24,13 @@ describe("PurchaseAmountValidator 테스트", () => {
       }).toThrow("[ERROR] 구입 금액은 1,000원 단위로 입력해야 합니다.");
     });
   });
+
+  test("정상적인 구입 금액은 예외를 발생시키지 않는다.", () => {
+    const validAmounts = ["1000", "8000"];
+    validAmounts.forEach(amount => {
+      expect(() => {
+        PurchaseAmountValidator.validate(amount);
+      }).not.toThrow();
+    });
+  });
 });
