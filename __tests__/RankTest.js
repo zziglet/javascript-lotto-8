@@ -9,4 +9,10 @@ describe("Rank 클래스 테스트", () => {
     expect(Rank.of(3, false)).toBe(Rank.FIFTH);
     expect(Rank.of(2, false)).toBe(Rank.NONE);
   });
+
+  test("getter 메서드들은 정확한 값을 반환한다.", () => {
+    const third = Rank.THIRD;
+    expect(third.getPrize()).toBe(1_500_000);
+    expect(third.getDescription()).toBe("5개 일치 (1,500,000원)");
+  });
 });
