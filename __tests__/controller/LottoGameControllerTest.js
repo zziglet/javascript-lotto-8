@@ -45,7 +45,7 @@ describe("LottoGameController 테스트", () => {
     expect(LottoMachine.issue).toHaveBeenCalledWith(purchaseAmount);
     expect(OutputView.printPurchaseResult).toHaveBeenCalledWith(lottos);
     expect(InputView.readWinningNumbers).toHaveBeenCalled();
-    expect(InputView.readBonusNumber).toHaveBeenCalledWith(expect.any(WinningNumbers));
+    expect(InputView.readBonusNumber).toHaveBeenCalledWith(winningNumbersRaw);
     expect(WinningService.checkWinnings).toHaveBeenCalledWith(lottos, expect.any(WinningNumbers));
     expect(WinningService.calculateStatistics).toHaveBeenCalledWith(ranks);
     expect(ProfitCalculator.calculate).toHaveBeenCalledWith(statistics, purchaseAmount);
