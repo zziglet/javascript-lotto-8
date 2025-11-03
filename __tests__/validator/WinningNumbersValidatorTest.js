@@ -23,4 +23,18 @@ describe("WinningNumbersValidator 테스트", () => {
       WinningNumbersValidator.validate(input);
     }).not.toThrow();
   });
+
+  test("당첨 번호가 1부터 45 사이의 숫자가 아니면 예외가 발생한다.", () => {
+    const input = "1,2,3,4,5,46";
+    expect(() => {
+      WinningNumbersValidator.validate(input);
+    }).toThrow("[ERROR] 당첨 번호는 1부터 45 사이의 숫자여야 합니다.");
+  });
+
+  test("당첨 번호에 중복된 숫자가 있으면 예외가 발생한다.", () => {
+    const input = "1,2,3,4,5,5";
+    expect(() => {
+      WinningNumbersValidator.validate(input);
+    }).toThrow("[ERROR] 당첨 번호에 중복된 숫자가 있습니다.");
+  });
 });
