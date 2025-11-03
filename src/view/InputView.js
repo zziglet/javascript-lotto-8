@@ -4,8 +4,8 @@ import WinningNumbersValidator from "../validator/WinningNumbersValidator.js";
 import BonusNumberValidator from "../validator/BonusNumberValidator.js";
 import OutputView from "./OutputView.js";
 
-const InputView = {
-  async readPurchaseAmount() {
+class InputView {
+  static async readPurchaseAmount() {
     while (true) {
       try {
         const input = await Console.readLineAsync("구입금액을 입력해 주세요.\n");
@@ -20,9 +20,9 @@ const InputView = {
         throw error;
       }
     }
-  },
+  }
 
-  async readWinningNumbers() {
+  static async readWinningNumbers() {
     while (true) {
       try {
         const input = await Console.readLineAsync("\n당첨 번호를 입력해 주세요.\n");
@@ -37,9 +37,9 @@ const InputView = {
         throw error;
       }
     }
-  },
+  }
 
-  async readBonusNumber(winningNumbers) {
+  static async readBonusNumber(winningNumbers) {
     while (true) {
       try {
         const input = await Console.readLineAsync("\n보너스 번호를 입력해 주세요.\n");
@@ -54,17 +54,17 @@ const InputView = {
         throw error;
       }
     }
-  },
+  }
 
-  #handleEndOfInput(input) {
+  static #handleEndOfInput(input) {
     if (input === undefined) {
       throw new Error("입력 스트림이 예기치 않게 종료되었습니다.");
     }
-  },
+  }
 
-  #isRetryableError(error) {
+  static #isRetryableError(error) {
     return error.message.startsWith("[ERROR]");
-  },
+  }
 };
 
 export default InputView;
