@@ -24,6 +24,10 @@ class Lotto {
   getNumbers() {
     return this.#numbers.sort((a, b) => a - b);
   }
+
+  countMatches(winningNumbers) {
+    return this.#numbers.filter(number => winningNumbers.includes(number)).length;
+  }
 }
 
 export default Lotto;
