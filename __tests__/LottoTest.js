@@ -35,4 +35,10 @@ describe("로또 클래스 테스트", () => {
     const lotto = new Lotto([1, 2, 3, 4, 5, 6]);
     expect(lotto.countMatches([1, 2, 3, 7, 8, 9])).toBe(3);
   });
+
+  test("hasNumber 메서드는 특정 번호의 포함 여부를 반환한다.", () => {
+    const lotto = new Lotto([1, 2, 3, 4, 5, 6]);
+    expect(lotto.hasNumber(3)).toBe(true);
+    expect(lotto.hasNumber(7)).toBe(false);
+  });
 });
