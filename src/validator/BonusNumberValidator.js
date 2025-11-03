@@ -1,14 +1,16 @@
+import Constant from "../constants/Constant.js";
+
 const BonusNumberValidator = {
   validate(input, winningNumbers) {
     if (isNaN(input) || input.trim() === '') {
-      throw new Error("[ERROR] 보너스 번호는 숫자여야 합니다.");
+      throw new Error(`${Constant.ERROR_PREFIX} ${Constant.ERROR_MESSAGES.INVALID_BONUS_NUMBER_TYPE}`);
     }
     const bonusNumber = Number(input);
-    if (bonusNumber < 1 || bonusNumber > 45) {
-      throw new Error("[ERROR] 보너스 번호는 1부터 45 사이의 숫자여야 합니다.");
+    if (bonusNumber < Constant.LOTTO.MIN_NUMBER || bonusNumber > Constant.LOTTO.MAX_NUMBER) {
+      throw new Error(`${Constant.ERROR_PREFIX} ${Constant.ERROR_MESSAGES.BONUS_NUMBER_OUT_OF_RANGE}`);
     }
     if (winningNumbers.includes(bonusNumber)) {
-      throw new Error("[ERROR] 보너스 번호는 당첨 번호와 중복될 수 없습니다.");
+      throw new Error(`${Constant.ERROR_PREFIX} ${Constant.ERROR_MESSAGES.DUPLICATE_BONUS_NUMBER}`);
     }
   },
 };

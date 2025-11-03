@@ -1,4 +1,5 @@
 import Lotto from './Lotto.js';
+import Constant from '../constants/Constant.js';
 
 class WinningNumbers {
   #winningNumbers;
@@ -11,11 +12,11 @@ class WinningNumbers {
   }
 
   #validateBonusNumber(bonusNumber) {
-    if (bonusNumber < 1 || bonusNumber > 45) {
-      throw new Error('[ERROR] 보너스 번호는 1부터 45 사이의 숫자여야 합니다.');
+    if (bonusNumber < Constant.LOTTO.MIN_NUMBER || bonusNumber > Constant.LOTTO.MAX_NUMBER) {
+      throw new Error(`${Constant.ERROR_PREFIX} ${Constant.ERROR_MESSAGES.BONUS_NUMBER_OUT_OF_RANGE}`);
     }
     if (this.#winningNumbers.hasNumber(bonusNumber)) {
-      throw new Error('[ERROR] 보너스 번호는 당첨 번호와 중복될 수 없습니다.');
+      throw new Error(`${Constant.ERROR_PREFIX} ${Constant.ERROR_MESSAGES.DUPLICATE_BONUS_NUMBER}`);
     }
   }
 

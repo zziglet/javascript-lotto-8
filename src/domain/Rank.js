@@ -1,3 +1,5 @@
+import Constant from "../constants/Constant.js";
+
 const Rank = {
   FIRST: {
     prize: 2_000_000_000,

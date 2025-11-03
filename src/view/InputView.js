@@ -1,4 +1,5 @@
 import { Console } from "@woowacourse/mission-utils";
+import Constant from "../constants/Constant.js";
 import PurchaseAmountValidator from "../validator/PurchaseAmountValidator.js";
 import WinningNumbersValidator from "../validator/WinningNumbersValidator.js";
 import BonusNumberValidator from "../validator/BonusNumberValidator.js";
@@ -8,7 +9,7 @@ class InputView {
   static async readPurchaseAmount() {
     while (true) {
       try {
-        const input = await Console.readLineAsync("구입금액을 입력해 주세요.\n");
+        const input = await Console.readLineAsync(Constant.MESSAGES.PURCHASE_AMOUNT_PROMPT);
         this.#handleEndOfInput(input);
         PurchaseAmountValidator.validate(input);
         return Number(input);
@@ -25,7 +26,7 @@ class InputView {
   static async readWinningNumbers() {
     while (true) {
       try {
-        const input = await Console.readLineAsync("\n당첨 번호를 입력해 주세요.\n");
+        const input = await Console.readLineAsync(Constant.MESSAGES.WINNING_NUMBERS_PROMPT);
         this.#handleEndOfInput(input);
         WinningNumbersValidator.validate(input);
         return WinningNumbersValidator.parse(input);
@@ -42,7 +43,7 @@ class InputView {
   static async readBonusNumber(winningNumbers) {
     while (true) {
       try {
-        const input = await Console.readLineAsync("\n보너스 번호를 입력해 주세요.\n");
+        const input = await Console.readLineAsync(Constant.MESSAGES.BONUS_NUMBER_PROMPT);
         this.#handleEndOfInput(input);
         BonusNumberValidator.validate(input, winningNumbers);
         return Number(input);
@@ -63,7 +64,7 @@ class InputView {
   }
 
   static #isRetryableError(error) {
-    return error.message.startsWith("[ERROR]");
+    return error.message.startsWith(Constant.ERROR_PREFIX);
   }
 };
 

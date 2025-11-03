@@ -1,17 +1,17 @@
 import { Console } from "@woowacourse/mission-utils";
 import Rank from "../domain/Rank.js";
+import Constant from "../constants/Constant.js";
 
 const OutputView = {
   printPurchaseResult(lottos) {
-    Console.print(`\n${lottos.length}개를 구매했습니다.`);
+    Console.print(Constant.MESSAGES.PURCHASE_RESULT_HEADER(lottos.length));
     lottos.forEach(lotto => {
       Console.print(`[${lotto.getNumbers().join(", ")}]`);
     });
   },
 
   printStatistics(statistics, profitRate) {
-    Console.print("\n당첨 통계");
-    Console.print("---");
+    Console.print(Constant.MESSAGES.STATISTICS_HEADER);
 
     const rankOrder = ["FIFTH", "FOURTH", "THIRD", "SECOND", "FIRST"];
     rankOrder.forEach(rankKey => {
@@ -20,7 +20,7 @@ const OutputView = {
       Console.print(`${rank.getDescription()} - ${count}개`);
     });
 
-    Console.print(`총 수익률은 ${profitRate}%입니다.`);
+    Console.print(Constant.MESSAGES.PROFIT_RATE(profitRate));
   },
 
   printError(message) {

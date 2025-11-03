@@ -1,11 +1,16 @@
+import Constant from "../constants/Constant.js";
+
 const PurchaseAmountValidator = {
   validate(input) {
     if (isNaN(input)) {
-      throw new Error("[ERROR] 구입 금액은 숫자여야 합니다.");
+      throw new Error(`${Constant.ERROR_PREFIX} ${Constant.ERROR_MESSAGES.INVALID_PURCHASE_AMOUNT}`);
     }
     const amount = Number(input);
-    if (amount <= 0 || amount % 1000 !== 0) {
-      throw new Error("[ERROR] 구입 금액은 1,000원 단위로 입력해야 합니다.");
+    if (amount <= 0) {
+      throw new Error(`${Constant.ERROR_PREFIX} ${Constant.ERROR_MESSAGES.NON_POSITIVE_PURCHASE_AMOUNT}`);
+    }
+    if (amount % Constant.LOTTO.PRICE !== 0) {
+      throw new Error(`${Constant.ERROR_PREFIX} ${Constant.ERROR_MESSAGES.PURCHASE_AMOUNT_NOT_IN_UNITS}`);
     }
   },
 };

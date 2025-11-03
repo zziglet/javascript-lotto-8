@@ -1,3 +1,5 @@
+import Constant from "../constants/Constant.js";
+
 class Lotto {
   #numbers;
 
@@ -7,16 +9,16 @@ class Lotto {
   }
 
   #validate(numbers) {
-    if (numbers.length !== 6) {
-      throw new Error("[ERROR] 로또 번호는 6개여야 합니다.");
+    if (numbers.length !== Constant.LOTTO.NUMBER_COUNT) {
+      throw new Error(`${Constant.ERROR_PREFIX} ${Constant.ERROR_MESSAGES.INVALID_LOTTO_NUMBERS_COUNT}`);
     }
     const uniqueNumbers = new Set(numbers);
     if (uniqueNumbers.size !== numbers.length) {
-      throw new Error("[ERROR] 로또 번호에 중복된 숫자가 있습니다.");
+      throw new Error(`${Constant.ERROR_PREFIX} ${Constant.ERROR_MESSAGES.DUPLICATE_WINNING_NUMBERS}`);
     }
     for (const number of numbers) {
-      if (number < 1 || number > 45) {
-        throw new Error("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.");
+      if (number < Constant.LOTTO.MIN_NUMBER || number > Constant.LOTTO.MAX_NUMBER) {
+        throw new Error(`${Constant.ERROR_PREFIX} ${Constant.ERROR_MESSAGES.WINNING_NUMBER_OUT_OF_RANGE}`);
       }
     }
   }
