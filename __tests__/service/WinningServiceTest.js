@@ -17,4 +17,19 @@ describe("WinningService 테스트", () => {
 
     expect(ranks).toEqual([Rank.FIRST, Rank.FIFTH, Rank.FIFTH, Rank.NONE, Rank.NONE]);
   });
+
+  test("calculateStatistics는 등수별 개수를 정확히 집계한다.", () => {
+    const ranks = [Rank.FIRST, Rank.FIFTH, Rank.FIFTH, Rank.NONE];
+    const statistics = WinningService.calculateStatistics(ranks);
+
+    const expected = new Map([
+      [Rank.FIFTH, 2],
+      [Rank.FOURTH, 0],
+      [Rank.THIRD, 0],
+      [Rank.SECOND, 0],
+      [Rank.FIRST, 1],
+    ]);
+
+    expect(statistics).toEqual(expected);
+  });
 });
