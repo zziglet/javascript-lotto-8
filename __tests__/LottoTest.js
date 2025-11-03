@@ -30,4 +30,9 @@ describe("로또 클래스 테스트", () => {
     const lotto = new Lotto([6, 5, 4, 3, 2, 1]);
     expect(lotto.getNumbers()).toEqual([1, 2, 3, 4, 5, 6]);
   });
+
+  test("countMatches 메서드는 일치하는 번호의 개수를 반환한다.", () => {
+    const lotto = new Lotto([1, 2, 3, 4, 5, 6]);
+    expect(lotto.countMatches([1, 2, 3, 7, 8, 9])).toBe(3);
+  });
 });
