@@ -25,4 +25,9 @@ describe("로또 클래스 테스트", () => {
       new Lotto([0, 1, 2, 3, 4, 5]);
     }).toThrow("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.");
   });
+
+  test("getNumbers 메서드는 정렬된 로또 번호를 반환한다.", () => {
+    const lotto = new Lotto([6, 5, 4, 3, 2, 1]);
+    expect(lotto.getNumbers()).toEqual([1, 2, 3, 4, 5, 6]);
+  });
 });
