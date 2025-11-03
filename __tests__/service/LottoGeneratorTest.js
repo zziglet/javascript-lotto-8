@@ -1,5 +1,5 @@
 import { Random } from "@woowacourse/mission-utils";
-import Lotto from "../../src/Lotto.js";
+import Lotto from "../../src/domain/Lotto.js";
 import LottoGenerator from "../../src/service/LottoGenerator.js";
 
 jest.mock("@woowacourse/mission-utils", () => ({
