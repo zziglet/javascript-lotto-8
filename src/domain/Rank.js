@@ -39,12 +39,16 @@ const Rank = {
   },
 
   of(matchCount, hasBonus) {
-    if (matchCount === 6) return Rank.FIRST;
-    if (matchCount === 5 && hasBonus) return Rank.SECOND;
-    if (matchCount === 5) return Rank.THIRD;
-    if (matchCount === 4) return Rank.FOURTH;
-    if (matchCount === 3) return Rank.FIFTH;
-    return Rank.NONE;
+    if (matchCount === 5 && hasBonus) {
+      return Rank.SECOND;
+    }
+    const rankMapping = {
+      6: Rank.FIRST,
+      5: Rank.THIRD,
+      4: Rank.FOURTH,
+      3: Rank.FIFTH,
+    };
+    return rankMapping[matchCount] || Rank.NONE;
   },
 
   values() {

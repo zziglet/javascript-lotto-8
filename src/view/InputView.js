@@ -6,13 +6,10 @@ import BonusNumberValidator from "../validator/BonusNumberValidator.js";
 import OutputView from "./OutputView.js";
 
 class InputView {
-  static async readPurchaseAmount() {
+  static async #retryOnValidationError(action) {
     while (true) {
       try {
-        const input = await Console.readLineAsync(Constant.MESSAGES.PURCHASE_AMOUNT_PROMPT);
-        this.#handleEndOfInput(input);
-        PurchaseAmountValidator.validate(input);
-        return Number(input);
+        return await action();
       } catch (error) {
         if (this.#isRetryableError(error)) {
           OutputView.printError(error.message);
@@ -21,40 +18,33 @@ class InputView {
         throw error;
       }
     }
+  }
+
+  static async readPurchaseAmount() {
+    return this.#retryOnValidationError(async () => {
+      const input = await Console.readLineAsync(Constant.MESSAGES.PURCHASE_AMOUNT_PROMPT);
+      this.#handleEndOfInput(input);
+      PurchaseAmountValidator.validate(input);
+      return Number(input);
+    });
   }
 
   static async readWinningNumbers() {
-    while (true) {
-      try {
-        const input = await Console.readLineAsync(Constant.MESSAGES.WINNING_NUMBERS_PROMPT);
-        this.#handleEndOfInput(input);
-        WinningNumbersValidator.validate(input);
-        return WinningNumbersValidator.parse(input);
-      } catch (error) {
-        if (this.#isRetryableError(error)) {
-          OutputView.printError(error.message);
-          continue;
-        }
-        throw error;
-      }
-    }
+    return this.#retryOnValidationError(async () => {
+      const input = await Console.readLineAsync(Constant.MESSAGES.WINNING_NUMBERS_PROMPT);
+      this.#handleEndOfInput(input);
+      WinningNumbersValidator.validate(input);
+      return WinningNumbersValidator.parse(input);
+    });
   }
 
   static async readBonusNumber(winningNumbers) {
-    while (true) {
-      try {
-        const input = await Console.readLineAsync(Constant.MESSAGES.BONUS_NUMBER_PROMPT);
-        this.#handleEndOfInput(input);
-        BonusNumberValidator.validate(input, winningNumbers);
-        return Number(input);
-      } catch (error) {
-        if (this.#isRetryableError(error)) {
-          OutputView.printError(error.message);
-          continue;
-        }
-        throw error;
-      }
-    }
+    return this.#retryOnValidationError(async () => {
+      const input = await Console.readLineAsync(Constant.MESSAGES.BONUS_NUMBER_PROMPT);
+      this.#handleEndOfInput(input);
+      BonusNumberValidator.validate(input, winningNumbers);
+      return Number(input);
+    });
   }
 
   static #handleEndOfInput(input) {

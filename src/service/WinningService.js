@@ -10,11 +10,11 @@ const WinningService = {
 
   calculateStatistics(ranks) {
     const statistics = new Map(Rank.values().map(rank => [rank, 0]));
-    ranks.forEach(rank => {
-      if (rank !== Rank.NONE) {
+    ranks
+      .filter(rank => rank !== Rank.NONE)
+      .forEach(rank => {
         statistics.set(rank, statistics.get(rank) + 1);
-      }
-    });
+      });
     return statistics;
   },
 };
