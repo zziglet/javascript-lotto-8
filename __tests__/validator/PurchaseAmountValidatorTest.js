@@ -6,4 +6,22 @@ describe("PurchaseAmountValidator 테스트", () => {
       PurchaseAmountValidator.validate("abc");
     }).toThrow("[ERROR] 구입 금액은 숫자여야 합니다.");
   });
+
+  test("구입 금액이 1,000원 단위가 아니면 예외가 발생한다.", () => {
+    const invalidAmounts = ["500", "1500"];
+    invalidAmounts.forEach(amount => {
+      expect(() => {
+        PurchaseAmountValidator.validate(amount);
+      }).toThrow("[ERROR] 구입 금액은 1,000원 단위로 입력해야 합니다.");
+    });
+  });
+
+  test("구입 금액이 양수가 아니면 예외가 발생한다.", () => {
+    const nonPositiveAmounts = ["0", "-1000"];
+    nonPositiveAmounts.forEach(amount => {
+      expect(() => {
+        PurchaseAmountValidator.validate(amount);
+      }).toThrow("[ERROR] 구입 금액은 1,000원 단위로 입력해야 합니다.");
+    });
+  });
 });
