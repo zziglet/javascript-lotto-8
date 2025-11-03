@@ -14,6 +14,10 @@ const WinningNumbersValidator = {
       throw new Error("[ERROR] 당첨 번호에 중복된 숫자가 있습니다.");
     }
   },
+
+  parse(input) {
+    return input.split(",").map(n => Number(n.trim()));
+  },
 };
 
 export default WinningNumbersValidator;
