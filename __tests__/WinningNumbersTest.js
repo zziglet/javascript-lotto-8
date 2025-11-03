@@ -27,4 +27,10 @@ describe("WinningNumbers 클래스 테스트", () => {
     expect(winningNumbers.match(lotto1)).toEqual({ matchCount: 3, hasBonus: false });
     expect(winningNumbers.match(lotto2)).toEqual({ matchCount: 5, hasBonus: true });
   });
+
+  test("getter 메서드들은 값을 정확히 반환한다.", () => {
+    const winningNumbers = new WinningNumbers([1, 2, 3, 4, 5, 6], 7);
+    expect(winningNumbers.getWinningNumbers().getNumbers()).toEqual([1, 2, 3, 4, 5, 6]);
+    expect(winningNumbers.getBonusNumber()).toBe(7);
+  });
 });
