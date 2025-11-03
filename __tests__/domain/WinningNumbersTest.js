@@ -1,4 +1,4 @@
-import WinningNumbers from "../src/domain/WinningNumbers.js";
+import WinningNumbers from "../../src/domain/WinningNumbers.js";
 
 describe("WinningNumbers 클래스 테스트", () => {
   test("보너스 번호가 1보다 작으면 예외가 발생한다.", () => {

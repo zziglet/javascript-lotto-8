@@ -1,4 +1,4 @@
-import Rank from "../src/domain/Rank.js";
+import Rank from "../../src/domain/Rank.js";
 
 describe("Rank 클래스 테스트", () => {
   test("of 메서드는 일치 개수와 보너스 여부로 정확한 등수를 반환한다.", () => {
