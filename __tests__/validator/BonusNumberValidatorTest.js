@@ -20,4 +20,10 @@ describe("BonusNumberValidator 테스트", () => {
       BonusNumberValidator.validate("6", winningNumbers);
     }).toThrow("[ERROR] 보너스 번호는 당첨 번호와 중복될 수 없습니다.");
   });
+
+  test("정상적인 보너스 번호는 예외를 발생시키지 않는다.", () => {
+    expect(() => {
+      BonusNumberValidator.validate("7", winningNumbers);
+    }).not.toThrow();
+  });
 });
