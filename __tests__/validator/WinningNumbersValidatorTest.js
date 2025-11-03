@@ -37,4 +37,10 @@ describe("WinningNumbersValidator 테스트", () => {
       WinningNumbersValidator.validate(input);
     }).toThrow("[ERROR] 당첨 번호에 중복된 숫자가 있습니다.");
   });
+
+  test("parse 메서드는 문자열을 숫자 배열로 변환한다.", () => {
+    const input = "1,2,3,4,5,6";
+    const result = WinningNumbersValidator.parse(input);
+    expect(result).toEqual([1, 2, 3, 4, 5, 6]);
+  });
 });
