@@ -21,7 +21,7 @@ class LottoGameController {
 
   async #winningPhase(lottos, purchaseAmount) {
     const winningNumbersRaw = await InputView.readWinningNumbers();
-    const bonusNumber = await InputView.readBonusNumber(new WinningNumbers(winningNumbersRaw));
+    const bonusNumber = await InputView.readBonusNumber(winningNumbersRaw);
     const winningNumbers = new WinningNumbers(winningNumbersRaw, bonusNumber);
 
     const ranks = WinningService.checkWinnings(lottos, winningNumbers);
