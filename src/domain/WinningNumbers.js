@@ -24,6 +24,14 @@ class WinningNumbers {
     const hasBonus = lotto.hasNumber(this.#bonusNumber);
     return { matchCount, hasBonus };
   }
+
+  getWinningNumbers() {
+    return this.#winningNumbers;
+  }
+
+  getBonusNumber() {
+    return this.#bonusNumber;
+  }
 }
 
 export default WinningNumbers;
